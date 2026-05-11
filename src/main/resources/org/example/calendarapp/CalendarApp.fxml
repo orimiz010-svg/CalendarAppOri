@@ -180,7 +180,7 @@
                                  </font></Label>
                            </children>
                         </VBox>
-                        <GridPane gridLinesVisible="true" maxHeight="1213.0" maxWidth="523.5" minHeight="1213.0" minWidth="700.0" opacity="0.32" prefHeight="1213.0" prefWidth="523.5" HBox.hgrow="ALWAYS">
+                        <GridPane fx:id="weeklyGrid" gridLinesVisible="true" maxHeight="1213.0" maxWidth="523.5" minHeight="1213.0" minWidth="700.0" opacity="0.32" prefHeight="1213.0" prefWidth="523.5" HBox.hgrow="ALWAYS">
                           <columnConstraints>
                               <ColumnConstraints hgrow="NEVER" minWidth="10.0" percentWidth="0.0" prefWidth="100.0" />
                             <ColumnConstraints hgrow="NEVER" minWidth="10.0" percentWidth="0.0" prefWidth="100.0" />
@@ -242,12 +242,12 @@
                   <Font size="15.0" />
                </font>
             </Button>
-            <TextField layoutX="18.0" layoutY="197.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #8EABE8;" />
+            <TextField fx:id="titleField" layoutX="18.0" layoutY="197.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #8EABE8;" />
             <Text fill="#575757" layoutX="18.0" layoutY="192.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title" wrappingWidth="26.0380859375">
                <font>
                   <Font name="Inter 18pt Regular" size="13.0" />
                </font></Text>
-            <TextField layoutX="18.0" layoutY="250.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #8EABE8;" />
+            <TextField fx:id="descriptionField" layoutX="18.0" layoutY="250.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #8EABE8;" />
             <Text fill="#575757" layoutX="18.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" wrappingWidth="74.50558072801027">
                <font>
                   <Font name="Inter 18pt Regular" size="13.0" />
@@ -347,4 +347,55 @@
       </Button>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
    </children>
+   <AnchorPane fx:id="viewTaskPane" layoutX="1003.0" layoutY="187.0"
+               prefHeight="400.0" prefWidth="310.0" visible="false"
+               style="-fx-background-color: #E7F0FF; -fx-background-radius: 20;
+                   -fx-border-color: #d1e3ff; -fx-border-radius: 20; -fx-border-width: 2;">
+      <children>
+         <Button fx:id="viewTaskExitButton" layoutX="266.0" layoutY="14.0"
+                 mnemonicParsing="false" onAction="#onViewTaskExitButtonClick"
+                 style="-fx-background-color: #FFFFFF; -fx-border-color: #8EABE8;"
+                 text="x" textFill="#8eabe8" />
+
+         <Label fx:id="viewTaskTitle" layoutX="18.0" layoutY="45.0" text="Title">
+            <font><Font name="Inter 28pt Medium" size="30.0" /></font>
+         </Label>
+
+         <Label fx:id="viewTaskType" layoutX="18.0" layoutY="90.0" text="To do" />
+
+         <Label text="description" layoutX="18.0" layoutY="130.0">
+            <font><Font name="Inter 18pt Medium" size="13.0" /></font>
+         </Label>
+         <Label fx:id="viewTaskDescription" layoutX="18.0" layoutY="148.0"
+                prefWidth="274.0" wrapText="true" text="" />
+
+         <Label text="date" layoutX="18.0" layoutY="210.0">
+            <font><Font name="Inter 18pt Medium" size="13.0" /></font>
+         </Label>
+         <Label fx:id="viewTaskDate" layoutX="18.0" layoutY="228.0" text="" />
+
+         <Label text="time" layoutX="130.0" layoutY="210.0">
+            <font><Font name="Inter 18pt Medium" size="13.0" /></font>
+         </Label>
+         <Label fx:id="viewTaskTime" layoutX="130.0" layoutY="228.0" text="" />
+
+         <Label text="color label" layoutX="18.0" layoutY="275.0">
+            <font><Font name="Inter 18pt Medium" size="13.0" /></font>
+         </Label>
+         <Pane fx:id="viewTaskColorBox" layoutX="18.0" layoutY="293.0"
+               prefHeight="22.0" prefWidth="22.0"
+               style="-fx-background-radius: 4;" />
+
+         <Button fx:id="completeButton" layoutX="190.0" layoutY="330.0"
+                 mnemonicParsing="false" onAction="#onCompleteButtonClick"
+                 style="-fx-background-color: #FFFFFF; -fx-border-color: #8EABE8;
+                       -fx-border-radius: 10; -fx-background-radius: 10;"
+                 text="complete" />
+         <Button fx:id="eraseButton" layoutX="190.0" layoutY="360.0"
+                 mnemonicParsing="false" onAction="#onEraseButtonClick"
+                 style="-fx-background-color: #FFFFFF; -fx-border-color: #8EABE8;
+                       -fx-border-radius: 10; -fx-background-radius: 10;"
+                 text="erase" />
+      </children>
+   </AnchorPane>
 </Pane>
