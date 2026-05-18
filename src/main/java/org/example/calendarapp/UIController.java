@@ -45,7 +45,7 @@ public class UIController implements Initializable {
     @FXML private ToggleGroup time2;
 
     // ---------- weekly grid ----------
-    @FXML private GridPane weeklyGrid;
+    @FXML private AnchorPane weeklyGrid;
 
     // ---------- view task pane ----------
     @FXML private AnchorPane viewTaskPane;
@@ -98,21 +98,39 @@ public class UIController implements Initializable {
 
         // 2. read date → figure out which column (0=Mon … 6=Sun)
         LocalDate date = datePicker1.getValue();
-        if (date == null) {
-            date = LocalDate.now();
-        }
+        if (date == null) date = LocalDate.now();
         int col = getDayColumn(date.getDayOfWeek());
 
-        // 3. read start hour → figure out which row (0=12AM … 23=11PM)
-        int hour = hourSpinner1.getValue();
+        // 3. read start time
+        int startHour12 = hourSpinner1.getValue();
+        int startMin    = minuteSpinner1.getValue();
         ToggleButton amPm1 = (ToggleButton) time1.getSelectedToggle();
-        boolean isPM = amPm1 != null && amPm1.getText().equals("PM");
-        int row = convertToRow(hour, isPM);
+        boolean startPM = amPm1 != null && amPm1.getText().equals("PM");
+        double startHour24 = convertToHour24(startHour12, startMin, startPM);
 
-        // 4. build a label for the task
+        // 4. read end time
+        int endHour12 = hourSpinner2.getValue();
+        int endMin    = minuteSpinner2.getValue();
+        ToggleButton amPm2 = (ToggleButton) time2.getSelectedToggle();
+        boolean endPM = amPm2 != null && amPm2.getText().equals("PM");
+        double endHour24 = convertToHour24(endHour12, endMin, endPM);
+
+        // 5. pixel math — 1 hour = 50px
+        double HOUR_HEIGHT = 50.0;
+        double COL_WIDTH   = 100.0;
+
+        double topY    = startHour24 * HOUR_HEIGHT;
+        double height  = (endHour24 - startHour24 + (endPM ? 1 : 0)) * HOUR_HEIGHT;
+        if (height < 10) height = 10; // minimum visible height
+        double leftX   = col * COL_WIDTH + 2;
+        double width   = COL_WIDTH - 4;
+
+        // 6. build the task label
         Label taskLabel = new Label(title);
-        taskLabel.setMaxWidth(Double.MAX_VALUE);
-        taskLabel.setMaxHeight(Double.MAX_VALUE);
+        taskLabel.setLayoutX(leftX);
+        taskLabel.setLayoutY(topY);
+        taskLabel.setPrefWidth(width);
+        taskLabel.setPrefHeight(height);
         taskLabel.setStyle(
                 "-fx-background-color: " + selectedColor + ";" +
                         "-fx-background-radius: 5;" +
@@ -120,23 +138,22 @@ public class UIController implements Initializable {
                         "-fx-font-size: 11px;" +
                         "-fx-wrap-text: true;"
         );
-        // store the entry data on the label so we can show it later
+
+        // 7. store entry and attach click handler
         CalendarEntry entry = new CalendarEntry(
                 title,
                 descriptionField.getText(),
                 date,
-                hourSpinner1.getValue(), minuteSpinner1.getValue(), isPM,
-                hourSpinner2.getValue(), minuteSpinner2.getValue(),
-                ((ToggleButton) time2.getSelectedToggle()) != null &&
-                        ((ToggleButton) time2.getSelectedToggle()).getText().equals("PM"),
+                startHour12, startMin, startPM,
+                endHour12,   endMin,   endPM,
                 selectedColor
         );
-
         taskLabel.setOnMouseClicked(e -> openViewTaskPane(entry, taskLabel));
-        // 5. place it in the grid
-        weeklyGrid.add(taskLabel, col, row);
 
-        // 6. close the pane and reset the form
+        // 8. add to the overlay pane
+        weeklyGrid.getChildren().add(taskLabel);
+
+        // 9. close and reset
         createNewTaskPane.setVisible(false);
         titleField.clear();
         descriptionField.clear();
@@ -189,7 +206,6 @@ public class UIController implements Initializable {
 
     @FXML
     protected void onEraseButtonClick() {
-        // remove the label from the grid
         if (currentTaskLabel != null) {
             weeklyGrid.getChildren().remove(currentTaskLabel);
         }
@@ -260,16 +276,18 @@ public class UIController implements Initializable {
      * Converts a 12-hour clock value + AM/PM into a grid row (0–23).
      * Row 0 = 12AM, Row 1 = 1AM, ... Row 12 = 12PM, Row 13 = 1PM ...
      */
-    private int convertToRow(int hour12, boolean isPM) {
+    /**
+     * Converts 12-hour time + AM/PM into a decimal 24-hour value.
+     * e.g. 7:30 AM → 7.5,  1:15 PM → 13.25
+     */
+    private double convertToHour24(int hour12, int minutes, boolean isPM) {
         int hour24;
         if (!isPM) {
-            // AM: 12AM → 0, 1AM → 1 ... 11AM → 11
             hour24 = (hour12 == 12) ? 0 : hour12;
         } else {
-            // PM: 12PM → 12, 1PM → 13 ... 11PM → 23
-            hour24 = (hour12 == 12) ? 12 : hour12 + 12;
+            hour24 = (hour12 == 12) ? 13 : hour12 + 12;
         }
-        return hour24;
+        return hour24 + (minutes / 60.0);
     }
 
     // -------------------------------------------------------

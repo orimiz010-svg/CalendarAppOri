@@ -180,49 +180,44 @@
                                  </font></Label>
                            </children>
                         </VBox>
-                        <GridPane fx:id="weeklyGrid" gridLinesVisible="true" maxHeight="1213.0" maxWidth="523.5" minHeight="1213.0" minWidth="700.0" opacity="0.32" prefHeight="1213.0" prefWidth="523.5" HBox.hgrow="ALWAYS">
-                          <columnConstraints>
-                              <ColumnConstraints hgrow="NEVER" minWidth="10.0" percentWidth="0.0" prefWidth="100.0" />
-                            <ColumnConstraints hgrow="NEVER" minWidth="10.0" percentWidth="0.0" prefWidth="100.0" />
-                            <ColumnConstraints hgrow="NEVER" minWidth="10.0" percentWidth="0.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="NEVER" minWidth="10.0" percentWidth="0.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="0.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="NEVER" maxWidth="100.0" minWidth="10.0" percentWidth="0.0" prefWidth="100.0" />
-                              <ColumnConstraints fillWidth="false" hgrow="NEVER" maxWidth="90.0" minWidth="90.0" percentWidth="0.0" prefWidth="90.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                           <effect>
-                              <Blend />
-                           </effect>
-                        </GridPane>
+                        <AnchorPane fx:id="weeklyGrid" minHeight="1200.0" minWidth="700.0"
+                                    prefHeight="1200.0" prefWidth="700.0" HBox.hgrow="ALWAYS"
+                                    style="-fx-border-color: #cccccc; -fx-border-width: 0.5;">
+                           <children>
+                              <!-- horizontal hour lines -->
+                              <Pane layoutX="0" layoutY="0"   prefWidth="700" prefHeight="1"  style="-fx-background-color: #cccccc;" />
+                              <Pane layoutX="0" layoutY="50"  prefWidth="700" prefHeight="1"  style="-fx-background-color: #cccccc;" />
+                              <Pane layoutX="0" layoutY="100" prefWidth="700" prefHeight="1"  style="-fx-background-color: #cccccc;" />
+                              <Pane layoutX="0" layoutY="150" prefWidth="700" prefHeight="1"  style="-fx-background-color: #cccccc;" />
+                              <Pane layoutX="0" layoutY="200" prefWidth="700" prefHeight="1"  style="-fx-background-color: #cccccc;" />
+                              <Pane layoutX="0" layoutY="250" prefWidth="700" prefHeight="1"  style="-fx-background-color: #cccccc;" />
+                              <Pane layoutX="0" layoutY="300" prefWidth="700" prefHeight="1"  style="-fx-background-color: #cccccc;" />
+                              <Pane layoutX="0" layoutY="350" prefWidth="700" prefHeight="1"  style="-fx-background-color: #cccccc;" />
+                              <Pane layoutX="0" layoutY="400" prefWidth="700" prefHeight="1"  style="-fx-background-color: #cccccc;" />
+                              <Pane layoutX="0" layoutY="450" prefWidth="700" prefHeight="1"  style="-fx-background-color: #cccccc;" />
+                              <Pane layoutX="0" layoutY="500" prefWidth="700" prefHeight="1"  style="-fx-background-color: #cccccc;" />
+                              <Pane layoutX="0" layoutY="550" prefWidth="700" prefHeight="1"  style="-fx-background-color: #cccccc;" />
+                              <Pane layoutX="0" layoutY="600" prefWidth="700" prefHeight="1"  style="-fx-background-color: #cccccc;" />
+                              <Pane layoutX="0" layoutY="650" prefWidth="700" prefHeight="1"  style="-fx-background-color: #cccccc;" />
+                              <Pane layoutX="0" layoutY="700" prefWidth="700" prefHeight="1"  style="-fx-background-color: #cccccc;" />
+                              <Pane layoutX="0" layoutY="750" prefWidth="700" prefHeight="1"  style="-fx-background-color: #cccccc;" />
+                              <Pane layoutX="0" layoutY="800" prefWidth="700" prefHeight="1"  style="-fx-background-color: #cccccc;" />
+                              <Pane layoutX="0" layoutY="850" prefWidth="700" prefHeight="1"  style="-fx-background-color: #cccccc;" />
+                              <Pane layoutX="0" layoutY="900" prefWidth="700" prefHeight="1"  style="-fx-background-color: #cccccc;" />
+                              <Pane layoutX="0" layoutY="950" prefWidth="700" prefHeight="1"  style="-fx-background-color: #cccccc;" />
+                              <Pane layoutX="0" layoutY="1000" prefWidth="700" prefHeight="1" style="-fx-background-color: #cccccc;" />
+                              <Pane layoutX="0" layoutY="1050" prefWidth="700" prefHeight="1" style="-fx-background-color: #cccccc;" />
+                              <Pane layoutX="0" layoutY="1100" prefWidth="700" prefHeight="1" style="-fx-background-color: #cccccc;" />
+                              <Pane layoutX="0" layoutY="1150" prefWidth="700" prefHeight="1" style="-fx-background-color: #cccccc;" />
+                              <!-- vertical day lines -->
+                              <Pane layoutX="100" layoutY="0" prefWidth="1" prefHeight="1200" style="-fx-background-color: #cccccc;" />
+                              <Pane layoutX="200" layoutY="0" prefWidth="1" prefHeight="1200" style="-fx-background-color: #cccccc;" />
+                              <Pane layoutX="300" layoutY="0" prefWidth="1" prefHeight="1200" style="-fx-background-color: #cccccc;" />
+                              <Pane layoutX="400" layoutY="0" prefWidth="1" prefHeight="1200" style="-fx-background-color: #cccccc;" />
+                              <Pane layoutX="500" layoutY="0" prefWidth="1" prefHeight="1200" style="-fx-background-color: #cccccc;" />
+                              <Pane layoutX="600" layoutY="0" prefWidth="1" prefHeight="1200" style="-fx-background-color: #cccccc;" />
+                           </children>
+                        </AnchorPane>
                      </children>
                   </HBox>
                </content>
